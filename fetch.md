@@ -32,3 +32,12 @@
 - we will typically use 2 `.then` methods for every fetch request.
 - the first `.then` will turn the response into JSON data for us to parse
 - the second `.then` will do something with the data 
+
+
+## Putting it all together 
+
+```fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=chicken')
+    .then(resp => resp.json())
+    .then(data => {
+        // do something with data and DOM manipulation
+    })```
