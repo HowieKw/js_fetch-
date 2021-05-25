@@ -48,3 +48,24 @@ function handleSubmit(event){
             });
         })
 }
+
+// return 5 most recent breweries upon page load
+
+
+document.addEventListener('DOMContentLoaded', fetchBrews())
+
+function fetchBrews(){
+    const recentBrews = document.querySelector("#recent-breweries-list")
+    
+    fetch('https://api.openbrewerydb.org/breweries?per_page=5&sort=+created_at')
+    .then(resp => resp.json())
+    .then(breweries => {
+        const brews = breweries.map((brewery) => {
+            return `<li>Brewery Name: ${brewery["name"]} - Brewery Type: ${brewery["brewery_type"]} - City: ${brewery["city"]}</li>`
+        })
+
+        brews.forEach((brew) => {
+            recentBrews.innerHTML += brew
+        })
+    })
+}
