@@ -42,7 +42,7 @@
                         // do something with data and DOM manipulation
                     })
 
-# Handling errors with fetch
+## Handling errors with fetch
 
 - Fetch also has a method `.catch` that we can call on the request
 - This method will return any errors associated with a faulty request
