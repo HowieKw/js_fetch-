@@ -45,7 +45,9 @@
 ## Handling errors with fetch
 
 - Fetch also has a method `.catch` that we can call on the request
-- This method will return any errors associated with a faulty request
+- If an error with the request happens, the reject promise will be returned. 
+- The catch method is used to handle reject. 
+- The code within catch() will be executed if an error occurs when calling the API of your choice.
 
                 fetch('https://api.openberydb.org/breweries/search?query=12')
                     .then(res => res.json())
