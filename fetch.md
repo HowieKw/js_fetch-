@@ -21,3 +21,14 @@
 - We will want to jsonify this response inside of a promise method `.then` like so:
 
 ```fetch(url).then(res => res.json())```
+
+- It is really important to inspect the data structure of the returned response. i.e. `fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=chicken').then(resp => resp.json())` 
+
+
+## .then()
+
+- since `fetch` is an asynchronous function, we want to ensure that the logic executed on the data received back is only done once the fetch has been resolved.
+- that is what `.then()` does 
+- we will typically use 2 `.then` methods for every fetch request.
+- the first `.then` will turn the response into JSON data for us to parse
+- the second `.then` will do something with the data 
