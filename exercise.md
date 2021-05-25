@@ -8,3 +8,7 @@ Goals for today:
 4. We will update the DOM on every search submission 
 
 
+## Updating DOM with 3rd party data on DOM load 
+
+1. We are going to render data from a 3rd party API upon a page load 
+
