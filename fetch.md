@@ -50,6 +50,11 @@
 - The code within catch() will be executed if an error occurs when calling the API of your choice.
 
                 fetch('https://api.openberydb.org/breweries/search?query=12')
-                    .then(res => res.json())
-                    .then(data => console.log(data))
-                    .catch(err => console.log('err', err))
+                    .then(r => console.log())
+                    .then(d => console.log(d))
+                    .catch(x => alert(x))
+
+
+                    .then(function(r){
+                        return r.json()
+                    })
