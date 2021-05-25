@@ -41,3 +41,13 @@
                     .then(data => {
                         // do something with data and DOM manipulation
                     })
+
+# Handling errors with fetch
+
+- Fetch also has a method `.catch` that we can call on the request
+- This method will return any errors associated with a faulty request
+
+                fetch('https://api.openberydb.org/breweries/search?query=12')
+                    .then(res => res.json())
+                    .then(data => console.log(data))
+                    .catch(err => console.log('err', err))
