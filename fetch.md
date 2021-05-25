@@ -36,8 +36,8 @@
 
 ## Putting it all together 
 
-```fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=chicken')
-    .then(resp => resp.json())
-    .then(data => {
-        // do something with data and DOM manipulation
-    })```
+                fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=chicken")
+                    .then(resp => resp.json())
+                    .then(data => {
+                        // do something with data and DOM manipulation
+                    })
