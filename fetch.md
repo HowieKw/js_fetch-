@@ -7,3 +7,7 @@
 
 ## How to use fetch?
 ``` fetch(url, [options]) ```
+
+1. url will be the path that is being accessed
+2. options can be a variety of additional information, such as headers, authentication etc.
+3. by default fetch makes a `get` request
