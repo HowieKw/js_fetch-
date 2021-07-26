@@ -1,71 +1,44 @@
-const BASE_URL = 'https://api.openbrewerydb.org/breweries/'
-const beersList = document.querySelector("#brewery-list")
-// First Action Item: when form is submitted, need to make a request to API 
+const pokeContainer = document.getElementById("poke-container");
 
-// select and add event listener to the form 
-const form = document.querySelector("#brewery-search-form")
-// const form = document.getElementById("brewery-search-form")
+function renderPoke(pokemon) {
+  const pokeCard = document.createElement("div");
+  pokeCard.id = `poke-${pokemon.id}`;
+  pokeCard.className = "poke-card";
 
-form.addEventListener('submit', handleSubmit)
+  const pokeImg = document.createElement("img");
+  pokeImg.src = pokemon.img;
+  pokeImg.alt = `${pokemon.name} image`;
 
-function handleSubmit(event){
-    beersList.innerHTML = ''
-    event.preventDefault()
-    const queryTerm = event.target.firstElementChild.value
+  const pokeName = document.createElement("h3");
+  pokeName.textContent = pokemon.name;
 
+  const pokeLikes = document.createElement("h3");
+  pokeLikes.textContent = "Likes: ";
 
-    fetch(`https://api.openbrewerydb.org/breweries/search?query=${queryTerm}`)
-        .then(resp => resp.json())
-        .then(breweries => {
-            const ul = document.createElement('ul')
-            const header = document.createElement('h3')
-            header.innerText = `${breweries.length} total breweries`
-            beersList.appendChild(header)
-            beersList.appendChild(ul)
-            const brewsList = breweries.map((brewery) => {
-                const li = document.createElement('li')
-                li.innerText = `Brewery Name: ${brewery["name"]} - Brewery Type: ${brewery["brewery_type"]} - City: ${brewery["city"]}`
-                li.id = brewery["obdb_id"]
-                return li 
-            })
-            brewsList.forEach(brewery => {
-                beersList.append(brewery)
-            });
-        })
+  const likesNum = document.createElement("h5");
+  likesNum.id = "like-num";
+  likesNum.textContent = pokemon.likes;
 
-    fetch(`https://api.openbrewerydb.org/breweries/search?query=${queryTerm}`)
-        .then(resp => resp.json())
-        .then(breweries => {
-            beersList.innerHTML += `<h2>${breweries.length} total breweries`
-            const brewsList = breweries.map((brewery) => {
-               const list =  
-               `<li>Brewery Name: ${brewery["name"]} - Brewery Type: ${brewery["brewery_type"]} - City: ${brewery["city"]}</li>`
-                return list
-            })
-            console.log(brewsList)
-            brewsList.forEach(brewery => {
-                beersList.innerHTML += brewery
-            });
-        })
+  const bttn = document.createElement("button");
+  bttn.id = "like-bttn";
+  bttn.textContent = "<3";
+  bttn.addEventListener("click", increaseLike);
+
+  pokeCard.append(pokeImg, pokeName, pokeLikes, likesNum, bttn);
+  pokeContainer.appendChild(pokeCard);
 }
 
-// return 5 most recent breweries upon page load
+function increaseLike(e) {
+    const likesElement = e.target.previousElementSibling;
+    likesElement.textContent = parseInt(likesElement.textContent) + 1;
+  }
 
-
-document.addEventListener('DOMContentLoaded', fetchBrews())
-
-function fetchBrews(){
-    const recentBrews = document.querySelector("#recent-breweries-list")
-    
-    fetch('https://api.openbrewerydb.org/breweries?per_page=5&sort=+created_at')
-    .then(resp => resp.json())
-    .then(breweries => {
-        const brews = breweries.map((brewery) => {
-            return `<li>Brewery Name: ${brewery["name"]} - Brewery Type: ${brewery["brewery_type"]} - City: ${brewery["city"]}</li>`
-        })
-
-        brews.forEach((brew) => {
-            recentBrews.innerHTML += brew
-        })
-    })
+function init() {
 }
+
+init();
+
+
+fetch('http://localhost:3000/pokemons')
+.then(resp => resp.json())
+.then(data => console.log(data))

@@ -1,15 +1,26 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>That is so Fetch!</title>
-</head>
-<body>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="index.js"></script>
+    <link rel="stylesheet" href="app.css" />
+    <title>Pokedex</title>
+  </head>
+  <body>
+    <div id="header">
+      <h1 id="title">Pokedex</h1>
+    </div>
+    <div id="poke-form-container">
+      <form id="poke-form">
+        <label><strong>Name: </strong></label>
+        <input type="text" id="name-input" />
+        <label><strong>Image: </strong></label>
+        <input type="text" id="img-input" />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
 
-
-
-    <script src='index.js'></script>
-</body>
+    <div id="poke-container"></div>
+  </body>
 </html>
