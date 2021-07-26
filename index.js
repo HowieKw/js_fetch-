@@ -1,4 +1,5 @@
 const pokeContainer = document.getElementById("poke-container");
+const BASE_URL = "http://localhost:3000/pokemons";
 
 function renderPoke(pokemon) {
   const pokeCard = document.createElement("div");
@@ -29,16 +30,20 @@ function renderPoke(pokemon) {
 }
 
 function increaseLike(e) {
-    const likesElement = e.target.previousElementSibling;
-    likesElement.textContent = parseInt(likesElement.textContent) + 1;
-  }
+  const likesElement = e.target.previousElementSibling;
+  likesElement.textContent = parseInt(likesElement.textContent) + 1;
+}
+
+function getPokemons() {
+  fetch(BASE_URL)
+    .then((resp) => resp.json())
+    .then((pokemons) => {
+      pokemons.forEach(pokemon => renderPoke(pokemon))
+    });
+}
 
 function init() {
+  getPokemons()
 }
 
 init();
-
-
-fetch('http://localhost:3000/pokemons')
-.then(resp => resp.json())
-.then(data => console.log(data))
