@@ -4,3 +4,5 @@ Resources:
 - [Fetch](https://javascript.info/fetch)
 - [Fetch Tutorial](https://www.freecodecamp.org/news/javascript-fetch-api-tutorial-with-js-fetch-post-and-header-examples/)
 - [Promise Basics](https://javascript.info/promise-basics)
+- [HTTP Overview](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)
+- 
