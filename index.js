@@ -1,36 +1,43 @@
-const BASE_URL = "https://api.openbrewerydb.org/breweries";
+const BASE_URL = 'https://api.openbrewerydb.org/breweries'
 const container = document.getElementById('brewery-list')
+// console.log(container)
 
-function renderBrew(brew) {
-  const card = document.createElement("div");
-  card.id = `brew-${brew.id}`;
-
-  const header = document.createElement("h3");
-  header.id = "brew-header";
-  header.textContent = brew.name;
-
-  const p = document.createElement("p");
-  p.id = "brew-info";
-  p.textContent = `
-    Type: ${brew.brewery_type} - 
-    City: ${brew.city} - 
-    State: ${brew.state}
-    `;
-
-  card.append(header, p)
-  container.appendChild(card)
+function getBreweries(){
+    fetch(BASE_URL) // returns a promise
+    .then(resp => resp.json()) // another promise
+    .then(breweries => {
+        breweries.forEach(renderBrew)
+    })
+    // .then(breweries => {
+    //     breweries.forEach(brew => renderBrew(brew))
+    // })
 }
 
-function fetchBrews() {
-  fetch(BASE_URL)
-    .then((resp) => resp.json())
-    .then((brews) => {
-      brews.forEach(brew => renderBrew(brew));
-    });
+function renderBrew(brew){
+    const div = document.createElement('div')
+    div.id = `brew-card-${brew.id}`
+
+    const header = document.createElement('h3')
+    header.textContent = `Name: ${brew.name}`
+
+    // create a p element
+    const p = document.createElement('p')
+    p.id = `brew-info-${brew.id}`
+    p.textContent = `
+        Type: ${brew.brewery_type} - 
+        City: ${brew.city} -
+        State: ${brew.state}
+    `
+    div.append(header, p)
+    container.appendChild(div)
+
 }
 
-function init() {
-  fetchBrews();
-}
+document.addEventListener('DOMContentLoaded', getBreweries)
 
-init();
+
+// 1. request a list of breweries
+// 2. Append each brewery to the DOM 
+
+
+// i am getting an array of objects
