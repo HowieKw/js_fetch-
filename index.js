@@ -28,6 +28,11 @@ function renderPoke(pokemon) {
   pokeContainer.appendChild(pokeCard);
 }
 
+function increaseLike(e) {
+    const likesElement = e.target.previousElementSibling;
+    likesElement.textContent = parseInt(likesElement.textContent) + 1;
+  }
+
 function init() {
 }
 
@@ -35,4 +40,9 @@ init();
 
 
 fetch('http://localhost:3000/pokemons')
-.then(resp => console.log(resp))
+.then(resp => resp.json())
+.then(pokemons => {
+    pokemons.forEach(pokemon => {
+        renderPoke(pokemon)
+    });
+})
