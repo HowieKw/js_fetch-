@@ -41,8 +41,4 @@ init();
 
 fetch('http://localhost:3000/pokemons')
 .then(resp => resp.json())
-.then(pokemons => {
-    pokemons.forEach(pokemon => {
-        renderPoke(pokemon)
-    });
-})
+.then(data => console.log(data))
